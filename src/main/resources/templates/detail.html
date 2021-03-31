@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<a class="btn btn-success" th:href="@{'/city/'}" role="button">Back to List</a>
+<h1>City Details</h1>
+<br>
+
+<dl class="row" th:object="${city}">
+    <dt class="col-sm-2">City Name:</dt>
+    <dd class="col-sm-4" th:text="${city.name}"></dd>
+    <dt class="col-sm-2">Nation:</dt>
+    <dd class="col-sm-4" th:text="${city.national.name}"></dd>
+    <dt class="col-sm-2">Area:</dt>
+    <dd class="col-sm-4" th:text="${city.area}"></dd>
+    <dt class="col-sm-2">Population:</dt>
+    <dd class="col-sm-4" th:text="${city.population}"></dd>
+    <dt class="col-sm-2">Description:</dt>
+    <dd class="col-sm-4" th:text="${city.description}"></dd>
+</dl>
+<a class="btn btn-info" role="button" th:href="@{'/city/edit/'+${city.id}}">Edit</a>
+<a class="btn btn-danger" role="button" th:href="@{'/city/delete/'+${city.id}}"
+   onclick="return confirm('Are you sure to delete this city ?')">Delete</a>
+
+
+
+</body>
+</html>

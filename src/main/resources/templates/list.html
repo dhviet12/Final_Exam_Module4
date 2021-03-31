@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List City</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>List City</h1>
+
+<a class="btn btn-primary" href="/city/create" role="button">Create Product</a>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">City</th>
+        <th scope="col">National</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="city:${cities}">
+        <td>
+            <a th:href="@{'/city/detail/'+${city.id}}" th:text="${city.name}"></a></td>
+        <td th:text="${city.national.name}"></td>
+        <td>
+            <a class="btn btn-info" role="button" th:href="@{'/city/edit/'+${city.id}}">Edit</a>
+            <a class="btn btn-danger" role="button" th:href="@{'/city/delete/'+${city.id}}"
+               onclick="return confirm('Are you sure to delete this city ?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <h3>
+        <a th:href="@{'/city'(page=${cities.number - 1})}" th:if="${cities.hasPrevious()}">Previous</a>
+        <span th:text="${cities.number + 1}"></span>/<span th:text="${cities.totalPages}"></span>
+        <a th:href="@{'/city'(page=${cities.number + 1})}" th:if="${cities.hasNext()}">Next</a>
+    </h3>
+</div>
+
+
+</body>
+</html>
